@@ -7,7 +7,7 @@ require "unirest"
 
 API_BASE = "https://api.everyblock.com"
 CITY = "philly"
-FILE = "everyblock_data.json"
+FILE = "data/everyblock_data.json"
 TOKEN = ENV["EVERYBLOCK_API_KEY"]
 
 class EveryBlockData
