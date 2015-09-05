@@ -30,7 +30,6 @@ post "/pois" do
   begin
     json = JSON.parse(request.body.string)
   rescue e
-    puts "asdf"
     status 400
     next body "Invalid POI"
   end
