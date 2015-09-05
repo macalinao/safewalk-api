@@ -8,6 +8,7 @@ require "json"
 db = Mongo::Client.new([ENV["MONGODB_HOST"]], database: ENV["MONGODB_DB"])
 
 set :bind, "0.0.0.0"
+set :port, ENV["PORT"]
 
 before do
   content_type :json
