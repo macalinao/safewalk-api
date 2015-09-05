@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+PORT=80 sudo bundle exec ruby app.rb
