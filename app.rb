@@ -7,6 +7,10 @@ require "json"
 
 db = Mongo::Client.new([ENV["MONGODB_HOST"]], database: ENV["MONGODB_DB"])
 
+before do
+  content_type :json
+end
+
 get "/" do
   "Hello, world!"
 end
@@ -20,7 +24,13 @@ get "/pois" do
 end
 
 post "/pois" do
-  # db[:pois].insert_one(
-  json = JSON.parse(request.body.string)
-  json["test"]
+  begin
+    json = JSON.parse(request.body.string)
+  rescue e
+    puts "asdf"
+    status 400
+    next body "Invalid POI"
+  end
+  result = db[:pois].insert_one(json)
+  { success: result.successful? }.to_json
 end
