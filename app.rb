@@ -18,3 +18,9 @@ get "/pois" do
   end
   pois.to_json
 end
+
+post "/pois" do
+  # db[:pois].insert_one(
+  json = JSON.parse(request.body.string)
+  json["test"]
+end
