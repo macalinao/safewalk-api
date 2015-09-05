@@ -1,6 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    bson (3.2.4)
+    mongo (2.0.6)
+      bson (~> 3.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -14,4 +17,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  mongo (~> 2.0)
   sinatra (~> 1.4.6)
