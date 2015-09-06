@@ -4,6 +4,7 @@ Dotenv.load
 require "sinatra"
 require "mongo"
 require "json"
+require "unirest"
 
 db = Mongo::Client.new([ENV["MONGODB_HOST"]], database: ENV["MONGODB_DB"])
 
@@ -37,4 +38,13 @@ post "/pois" do
   end
   result = db[:pois].insert_one(json)
   { success: result.successful? }.to_json
+end
+
+get "/directions" do
+  origin = params[:origin] || "Wells Fargo Center Philadelphia"
+  destination = params[:destination] || "Liberty Bell Philadelphia"
+  oe = URI.escape(origin)
+  de = URI.escape(destination)
+  url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{oe}&destination=#{de}&mode=walking"
+  Unirest.get(url).raw_body
 end
