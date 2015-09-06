@@ -8,3 +8,16 @@ function initMap() {
     zoom: 14
   });
 }
+
+$.get('/pois').then(function(data) {
+  data.map(function(el) {
+    var marker = new google.maps.Marker({
+      position: {
+        lat: parseFloat(el.latitude),
+        lon: parseFloat(el.longitude)
+      },
+      map: map,
+      title: el.title + '\n' + el.type
+    });
+  });
+});
