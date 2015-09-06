@@ -1,1 +1,2 @@
+#!/usr/bin/env sh
 mongoimport --db safewalk --collection pois data/datagen_res.json --jsonArray
