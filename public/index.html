@@ -10,6 +10,17 @@
         padding: 0;
       }
 
+      .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
       #map {
         height: 100%;
       }
@@ -32,11 +43,13 @@
     </style>
   </head>
   <body>
-    <input type="text" id="destination" />
+
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
+
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
     <script src="./everyblock.js"></script>
     <script src="./scripts.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&callback=initMap" async defer></script>
   </body>
 </html>
