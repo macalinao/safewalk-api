@@ -81,5 +81,17 @@ function initMap() {
     });
   });
 
+  $.get('/directions').then(function(data) {
+    var polyline = data.routes[0].overview_polyline.points;
+    console.log(data);
+    var path = new google.maps.Polyline({
+      path: google.maps.geometry.encoding.decodePath(polyline),
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 5,
+      map: map
+    });
+  });
+
 }
 
