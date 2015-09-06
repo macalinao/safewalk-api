@@ -4,6 +4,7 @@ function randomInRange(min, max) {
 
 var map;
 var markers = [];
+var windows = [];
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {
@@ -13,7 +14,7 @@ function initMap() {
     zoom: 14
   });
 
-  var windows = [];
+  
 
   everyblock.map(function(el) {
     var position = {
@@ -88,13 +89,40 @@ function initMap() {
     });
   });
 
+	function addMarker(el) {
+	  var marker = new google.maps.Marker({
+	    position: el,
+	    map: map,
+	    title: el.title + '\n' + el.type
+	  });
+	  markers.push(marker);
+
+
+	  var infowindow = new google.maps.InfoWindow({
+	        content: '<div contentEditable="true"><h2>Add Title</h2> Add Type</div>'
+	      });
+	      windows.push(infowindow);
+
+	      marker.addListener('click', function() {
+	        windows.map(function(w) {
+	          w.close();
+	          // if(infowindow.content.includes("Add")){
+	          // 	marker.setMap(null);
+	          // }
+	        });
+	        infowindow.open(map, marker);
+	      });
+
+	      infowindow.addListener('closeclick', function () {
+		 	if(infowindow.content.includes("Add")){
+	          marker.setMap(null);
+	      	}
+	   		});
+      infowindow.open(map, marker);
+
+	}
+	addMarker(el)
 }
 
-function addMarker(location) {
-  var marker = new google.maps.Marker({
-    position: location,
-    map: map
-  });
-  markers.push(marker);
-}
+
 
