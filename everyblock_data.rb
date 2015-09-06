@@ -13,7 +13,8 @@ TOKEN = ENV["EVERYBLOCK_API_KEY"]
 class EveryBlockData
 
   def main
-    json = CrimeReader.new(zipcodes).read_all.to_json
+    # json = CrimeReader.new(zipcodes).read_all.to_json
+    json = ZipCodeCrime.new("19148").results.to_json
     File.open(FILE, 'w') { |file| file.write(json) }
   end
 
@@ -56,19 +57,42 @@ class ZipCodeCrime
   end
 
   def first_results
-    data["results"].map do |result|
-      {
-        title: result["title"],
-        location: result["location_name"]
-      }
-    end
+    results(1)
   end
 
-  def data
-    Unirest.get(endpoint, headers: {
-      Authorization: "Token #{TOKEN}",
-      Accept: "application/json"
-    }).body
+  def results(total = 50)
+    ret = []
+    stop = false
+    total.times do |n|
+      next if stop
+      puts "Getting page #{n + 1}"
+      data_ret = data(n + 1)
+      if !data_ret["results"]
+        stop = true
+        next
+      end
+      ret = ret.concat(data_ret["results"].map do |result|
+        {
+          title: result["title"],
+          location: result["location_name"]
+        }
+      end)
+    end
+    ret
+  end
+
+  def data(page = nil)
+    url = endpoint
+    url += "&page=#{page}" if page
+    begin
+      resp = Unirest.get(url, headers: {
+        Authorization: "Token #{TOKEN}",
+        Accept: "application/json"
+      })
+    rescue e
+      return nil
+    end
+    resp.body
   end
 
   def endpoint
