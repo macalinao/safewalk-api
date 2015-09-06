@@ -14,8 +14,6 @@ function initMap() {
     zoom: 14
   });
 
-  
-
   everyblock.map(function(el) {
     var position = {
       // lat: parseFloat(el.latitude),
@@ -146,6 +144,9 @@ function initMap() {
       drugs: 'drugs'
     }[type] + '.png';
   }
+
+  var searchBox = new google.maps.places.SearchBox(input);
+
 }
 
 
