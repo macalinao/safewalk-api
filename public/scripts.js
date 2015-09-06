@@ -132,9 +132,6 @@ function initMap() {
     });
   });
 
-}
-
-  function iconFromType(type) {
   }
 
   function imgFromType(type) {
