@@ -16,6 +16,10 @@ before do
   content_type :json
 end
 
+get "/" do
+  redirect to("/public/index.html")
+end
+
 get "/pois" do
   pois = []
   db[:pois].find.each do |poi|
