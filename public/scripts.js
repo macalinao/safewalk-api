@@ -100,6 +100,14 @@ function initMap() {
     });
   });
 
+  function imgFromType(type) {
+    return './img/' + {
+      low_light: 'lowlight',
+      sketchy: 'sketchy',
+      drugs: 'drugs'
+    }[type];
+  }
+
 }
 
 function addMarker(location) {
