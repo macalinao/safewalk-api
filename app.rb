@@ -18,7 +18,7 @@ before do
 end
 
 get "/" do
-  redirect to("/public/index.html")
+  redirect to("/public/splash.html")
 end
 
 get "/pois" do
