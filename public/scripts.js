@@ -14,6 +14,36 @@ function initMap() {
 
   var windows = [];
 
+  everyblock.map(function(el) {
+    var position = {
+      // lat: parseFloat(el.latitude),
+      // lng: parseFloat(el.longitude)
+      lat: randomInRange(39.939681, 39.963030),
+      lng: randomInRange(-75.181942, -75.143820)
+    };
+
+    var marker = new google.maps.Marker({
+      position: position,
+      map: map,
+      title: el.title + '\n' + el.type
+    });
+
+    var infowindow = new google.maps.InfoWindow({
+      content: '<h2>' + el.title + '</h2>' + el.type + '<br />'
+        + el.location + '<br />'
+        + '<a href="' + el.url + '" target="_blank">View on EveryBlock</a>'
+    });
+    windows.push(infowindow);
+
+    marker.addListener('click', function() {
+      windows.map(function(w) {
+        w.close();
+      });
+      infowindow.open(map, marker);
+    });
+
+  });
+
   $.get('/pois').then(function(data) {
     data.map(function(el) {
       var position;
