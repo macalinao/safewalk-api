@@ -16,14 +16,22 @@ function initMap() {
 
   $.get('/pois').then(function(data) {
     data.map(function(el) {
+      var position;
 
-      var marker = new google.maps.Marker({
-        position: {
+      if (typeof el.latitude === 'string') {
+        position = {
           // lat: parseFloat(el.latitude),
           // lng: parseFloat(el.longitude)
           lat: randomInRange(39.91806, 39.933564),
           lng: randomInRange(-75.18108, -75.145319)
-        },
+        };
+      } else {
+        position = {
+        };
+      }
+
+      var marker = new google.maps.Marker({
+        position: position,
         map: map,
         title: el.title + '\n' + el.type
       });
