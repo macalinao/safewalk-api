@@ -74,6 +74,7 @@ class ZipCodeCrime
       ret = ret.concat(data_ret["results"].map do |result|
         {
           title: result["title"],
+          type: "sketchy",
           location: result["location_name"],
           url: result["url"]
         }
