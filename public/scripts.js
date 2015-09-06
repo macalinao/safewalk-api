@@ -3,6 +3,7 @@ function randomInRange(min, max) {
 }
 
 var map;
+var markers = [];
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {
@@ -44,6 +45,12 @@ function initMap() {
 
   });
 
+  // This event listener will call addMarker() when the map is clicked.
+  map.addListener('click', function(event) {
+    addMarker(event.latLng);
+  });
+
+
   $.get('/pois').then(function(data) {
     data.map(function(el) {
       var position;
@@ -81,5 +88,13 @@ function initMap() {
     });
   });
 
+}
+
+function addMarker(location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+  markers.push(marker);
 }
 
