@@ -71,7 +71,8 @@ function initMap() {
       var marker = new google.maps.Marker({
         position: position,
         map: map,
-        title: el.title + '\n' + el.type
+        title: el.title + '\n' + el.type,
+        icon: imgFromType(el.type)
       });
 
       var infowindow = new google.maps.InfoWindow({
@@ -132,12 +133,15 @@ function initMap() {
     });
   });
 
+  function iconFromType(type) {
+  }
+
   function imgFromType(type) {
     return './img/' + {
       low_light: 'lowlight',
       sketchy: 'sketchy',
       drugs: 'drugs'
-    }[type];
+    }[type] + '.png';
   }
 }
 }
