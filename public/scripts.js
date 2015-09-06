@@ -90,6 +90,7 @@ function initMap() {
   });
 
   $.get('/directions').then(function(data) {
+//  $.get('/directions?origin=wells%20fargo&destination=andrew').then(function(data) {
     var polyline = data.routes[0].overview_polyline.points;
     console.log(data);
     var path = new google.maps.Polyline({
