@@ -9,13 +9,11 @@ db = Mongo::Client.new([ENV["MONGODB_HOST"]], database: ENV["MONGODB_DB"])
 
 set :bind, "0.0.0.0"
 set :port, ENV["PORT"]
+set :public_folder, Proc.new { File.join(root, "public") }
+set :static, true
 
 before do
   content_type :json
-end
-
-get "/" do
-  "Hello, world!"
 end
 
 get "/pois" do
