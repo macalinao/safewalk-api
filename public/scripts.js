@@ -58,7 +58,8 @@ function initMap() {
     var marker = new google.maps.Marker({
       position: position,
       map: map,
-      title: el.title + '\n' + el.type
+      title: el.title + '\n' + el.type,
+      icon: randImg()
     });
 
     var infowindow = new google.maps.InfoWindow({
@@ -161,6 +162,11 @@ function initMap() {
       sketchy: 'sketchy',
       drugs: 'drugs'
     }[type] + '.png';
+  }
+
+  function randImg() {
+    var type = ['lowlight', 'sketchy', 'drugs'][Math.floor(Math.random() * 3)];
+    return './img/' + type + '.png';
   }
 
 }
