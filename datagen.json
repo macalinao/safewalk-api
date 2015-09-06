@@ -1,0 +1,60 @@
+{
+    "generationGuidelines": {
+        "coverageType": {
+            "type": "allCombos"
+        },
+        "columnDelimiter": "|",
+        "desiredLineCount": 100000
+    },
+    "variables": [
+        {
+            "coverageGroups": [
+                {
+                    "group": "number",
+                    "bounded": "true",
+                    "wholeDigits": 2,
+                    "fractionalDigits": 6,
+                    "mustBeAbove": -75.18108,
+                    "mustBeBelow": -75.145319
+                }
+            ],
+            "name": "latitude"
+        },
+        {
+            "coverageGroups": [
+                {
+                    "group": "number",
+                    "bounded": "true",
+                    "wholeDigits": 2,
+                    "fractionalDigits": 6,
+                    "mustBeAbove": 39.91806,
+                    "mustBeBelow": 39.933564
+                }
+            ],
+            "name": "longitude"
+        },
+        {
+            "coverageGroups": [
+                {
+                    "group": "alphaWithSpaces",
+                    "lengthFrom": "5",
+                    "lengthTo": "15"
+                }
+            ],
+            "name": "name"
+        },
+        {
+            "coverageGroups": [
+                {
+                    "group": "literalSet",
+                    "literals": [
+                        "low_light",
+                        "sketchy",
+                        "drugs"
+                    ]
+                }
+            ],
+            "name": "type"
+        }
+    ]
+}
