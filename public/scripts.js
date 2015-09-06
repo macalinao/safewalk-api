@@ -134,6 +134,8 @@ function initMap() {
     });
   });
 
+}
+
   function iconFromType(type) {
   }
 
@@ -144,7 +146,6 @@ function initMap() {
       drugs: 'drugs'
     }[type] + '.png';
   }
-}
 }
 
 
