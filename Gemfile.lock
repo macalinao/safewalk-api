@@ -8,7 +8,7 @@ GEM
     mime-types (1.25.1)
     mongo (2.0.6)
       bson (~> 3.0)
-    rack (1.6.4)
+    rack (1.6.13)
     rack-protection (1.5.3)
       rack
     rest-client (1.6.9)
